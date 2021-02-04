@@ -1,8 +1,8 @@
 figma.showUI(__html__, { width: 300, height: 450 });
 
-const savedId = figma.root.findOne((node) => node.name === 'better-color');
-
 figma.ui.onmessage = (msg: { type: string; colorSave?: { color: RGB; title: string } }) => {
+    const savedId = figma.root.findOne((node) => node.name === 'better-color');
+
     if (savedId) {
         if (msg.type === 'colorSave' && msg.colorSave) {
             const savedColor = figma.getNodeById(savedId.id) as PageNode;

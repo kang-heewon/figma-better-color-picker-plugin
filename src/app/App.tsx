@@ -29,11 +29,12 @@ const App = ({}) => {
         }
     };
     const save = (data: ColorData) => {
-        parent.postMessage({ pluginMessage: { colorSave: data } }, '*');
+        parent.postMessage({ pluginMessage: { type: 'colorSave', colorSave: data } }, '*');
     };
 
     useEffect(() => {
         if (window) {
+            console.log('excute');
             window.onmessage = (
                 e: MessageEvent<{ pluginMessage: { data: { color: RGB; title: string }[] } }>
             ) => {
@@ -45,7 +46,7 @@ const App = ({}) => {
             };
             parent.postMessage({ pluginMessage: { type: 'load' } }, '*');
         }
-    }, [window]);
+    }, []);
 
     return (
         <Container>
