@@ -1,6 +1,6 @@
 {
     "name": "better-color-picker",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "This plugin template uses Typescript. If you are familiar with Javascript, Typescript will look very familiar. In fact, valid Javascript code is already valid Typescript code.",
     "license": "ISC",
     "scripts": {

@@ -23,10 +23,10 @@ figma.ui.onmessage = (msg: { type: string; colorSave?: { color: RGB; title: stri
             figma.ui.postMessage({ data });
         }
     } else {
+        const savedColor = figma.createPage();
+        savedColor.name = 'better-color';
+        figma.root.appendChild(savedColor);
         if (msg.type === 'colorSave' && msg.colorSave) {
-            const savedColor = figma.createPage();
-            savedColor.name = 'better-color';
-            figma.root.appendChild(savedColor);
             const colorBlock = figma.createRectangle();
             colorBlock.name = msg.colorSave.title || Math.random().toString(36).substr(2, 11);
             colorBlock.fills = [{ type: 'SOLID', color: convertColor(msg.colorSave.color) }];
