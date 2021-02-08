@@ -17,6 +17,10 @@ const App = ({}) => {
     const [palette, setPalette] = useState<ColorView[]>([]);
 
     const handleChange = (color: ColorResult) => {
+        parent.postMessage(
+            { pluginMessage: { type: 'pick', colorSave: { color: color.rgb } } },
+            '*'
+        );
         setColor(color);
     };
     const handleAddToPalette = () => {
@@ -28,13 +32,13 @@ const App = ({}) => {
             }
         }
     };
+
     const save = (data: ColorData) => {
         parent.postMessage({ pluginMessage: { type: 'colorSave', colorSave: data } }, '*');
     };
 
     useEffect(() => {
         if (window) {
-            console.log('excute');
             window.onmessage = (
                 e: MessageEvent<{ pluginMessage: { data: { color: RGB; title: string }[] } }>
             ) => {
